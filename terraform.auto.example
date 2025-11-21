@@ -1,0 +1,53 @@
+tenancy_ocid      = "ocid1.tenancy.oc1."
+compartment_ocid  = "ocid1.compartment."
+
+display_name          = "TokenExDemoApp"
+app_active            = true
+idcs_endpoint         = "https://idcs-2......identity.oraclecloud.com:443"
+
+actor = "git_hub_repo_owner"
+
+allowed_grants = [
+  "urn:ietf:params:oauth:grant-type:jwt-bearer",
+  "client_credentials",
+  "refresh_token",
+]
+
+based_on_template = {
+  value         = "CustomWebAppTemplateId"
+  well_known_id = "CustomWebAppTemplateId"
+}
+client_ip_checking = "anywhere"
+client_type        = "confidential"
+schemas = [
+  "urn:ietf:params:scim:schemas:oracle:idcs:App",
+  "urn:ietf:params:scim:schemas:oracle:idcs:extension:OCITags",
+]
+trust_scope    = "Explicit"
+allowed_scopes = []
+
+#### user
+
+user_active         = true
+user_name           = "TokenExDemoUsr"
+user_display_name   = "TokenExDemoUsr"
+
+user_schemas = [
+  "urn:ietf:params:scim:schemas:core:2.0:User",
+  "urn:ietf:params:scim:schemas:oracle:idcs:extension:userState:User",
+  "urn:ietf:params:scim:schemas:oracle:idcs:extension:OCITags",
+  "urn:ietf:params:scim:schemas:oracle:idcs:extension:mfa:User",
+  "urn:ietf:params:scim:schemas:oracle:idcs:extension:user:User",
+]
+
+#### prop trust
+
+proptrust_schemas       = ["urn:ietf:params:scim:schemas:oracle:idcs:IdentityPropagationTrust"]
+type                    = "JWT"
+proptrust_name          = "fvassTokenExDemoPropTrust"
+issuer                  = "https://token.actions.githubusercontent.com"
+public_key_endpoint     = "https://token.actions.githubusercontent.com/.well-known/jwks"
+
+## group
+
+group_name = "TokenExDemoGrp"
